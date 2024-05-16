@@ -2,16 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-Route::get('/', function () {
-    echo "Hello World";
-});
-Route::get('home',function(){
-    return "Home";
-});
-Route::get('welcome',function(){
-    return view("welcome");
-});
-Route::get("user",[UserController::class,"show"]);
-Route::get("user/1",[UserController::class,"index"]);
-Route::get("user/{id}/edit",[UserController::class,"edit"])->name("user.edit");
-Route::get("user/list/{page?}",[UserController::class,"list"])->name("user.list");
+//user Controller path
+use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\frontend\ProductController;
+use App\Http\Controllers\frontend\ContactController;
+
+//admin Controller path
+
+//user route
+Route::get('/',[HomeController::class,"index"])->name("site.home");
+Route::get('san=pham',[ProductController::class,"index"])->name("site.product");
+Route::get('Product-detail/{slug}',[ProductController::class,"productDetail"])->name("site.product.detail");
+Route::get('lien-he',[ContactController::class,"index"])->name("site.contact");

@@ -1,0 +1,154 @@
+:root{
+    --main-bg-color: #D70018
+}
+.header,.footer{
+    background-color: var(--main-bg-color);
+}
+/* .menu a,p,h5,li{
+    color:#ffff;
+   
+    
+} */
+
+.offcanvas-body,.offcanvas-header{
+    background-color: var(--main-bg-color);
+    
+}
+.navbar-toggler{
+    border: none;
+    font-size: 1.25rem;
+}
+.navbar-toggler:focus,.btn-close:focus{
+    box-shadow: none;
+    outline: none;
+}
+.nav-link{
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+}
+.nav-link:hover,.nav-link.active{
+    color: #000;
+}
+@media(min-width:991px){
+    .nav-link::before{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #000;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+    .nav-link:hover::before,.nav-link.active::before{
+        width: 100%;
+        visibility: visible;
+    }
+}
+.list-group-item{
+    background-color: none;
+}
+.list-menu{
+    list-style-type: none;
+}
+.list-menu-item{
+    color: #fff;
+    padding: 5px;
+}
+.list-menu-item a{
+    text-decoration: none;
+    color: #fff;
+}
+.list-menu-item a:hover{
+    color: #000;
+}
+.slide-show{
+    overflow: hidden;
+}
+.list-image{
+    display: flex;
+}
+
+.banner-item{
+    position: relative;
+    transition: 0.3s;
+}
+.banner-item:hover{
+    transform: translateY(-10px);
+}
+.product img{
+    
+}
+.filter{
+    background-color: #F1F1F1;
+    border: 1px;
+    border-radius: 15px;
+    display: flex;
+}
+.filter-item{
+    padding: 5px;
+    border: 0.5px solid;
+    background-color: #F1F1F1;
+    border-radius: 15px;
+    text-decoration: none;
+    color: black;
+    margin: 5px;
+}
+.filter-item:hover,.filter-item.active{
+    background-color: var(--main-bg-color);
+    color: #fff;
+}
+.card{
+    border: 1px solid  #EAEAED;
+    box-shadow: 1px 1px 5px #EAEAED;
+}
+.product-item img{
+   
+    transition: 0.3s;
+}
+.product-item:hover img{
+    transform: scale(1.05,1.05);
+}
+.action{
+    list-style: none;
+    position: absolute;
+    left: 65%;
+    top: 10%;
+    display: none;
+   transition: 0.5s;
+   
+}
+.action-btn{
+    margin: 10px 0px;
+    padding: 2px 4px;
+    border: 1px solid;
+    border-radius:50px ;
+   
+    
+}
+.product-item:hover .action{
+    display: block;
+    
+}
+.sale{
+    position: absolute;
+    border-radius: 5px 20px 20px 0px;
+    font-size: 13px;
+    top:5px;
+    left: -5px;
+    background-color: var(--main-bg-color);
+    font-weight: bold;
+    box-shadow: 1px 1px 5px black;  
+}
+.sale-product{
+    background-color: #C11B29;
+}
+.see-all{
+    position: relative;
+    left: 75%;
+    border: 1px solid #fff;
+    color: #fff;
+}

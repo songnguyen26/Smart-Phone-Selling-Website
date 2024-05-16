@@ -17,7 +17,7 @@ class UserController extends Controller
     }
     public function list($page=1){
         $title="Danh sách";
-        $data=["name"=>"Thuận lợi","Lop"=>"CCQ2211H"];
+        $data=["name"=>"Song Nguyên","Lop"=>"CCQ2211H"];
         return view("user.list",compact("title","data"));
     }
 }
