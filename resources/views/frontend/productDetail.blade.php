@@ -4,7 +4,7 @@
     <div class="container py-3">
         <div class="row">
          <div class="col-4 pt-3">
-           <img class="img-fluid" src="assets/image/product1.webp" alt="">
+           <img class="img-fluid" src="../../../public/assets/image/product1.webp" alt="">
          </div>
          <div class="col-5 pt-3">
            <div class="row"><h1>product3</h1></div>

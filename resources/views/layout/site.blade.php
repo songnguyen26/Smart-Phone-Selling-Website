@@ -7,7 +7,8 @@
     
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
-    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/layout.css') }}">
+    
 </head>
 <body>
     <!-- header -->
@@ -16,7 +17,7 @@
             <div class="container">
                 <div class="row pt-3">
                     <div class="col-lg-2 col-7 ">
-                        <img class="img-fluid" src="assets/image/logo.webp" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/image/logo.webp') }}" alt="">
                     </div>
                     <div class="col-lg-4 d-lg-block d-none">
                         <div class="input-group mb-3">
@@ -101,38 +102,7 @@
                               <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img class="img-fluid" src="assets/image/logo.webp" alt=""></h5>
                               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
-                            <div class="offcanvas-body">
-                              <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                                <li class="nav-item">
-                                  <a class="nav-link mx-lg-2 active" aria-current="page" href="index.html">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link mx-lg-2" href="about.html">Giới thiệu</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link mx-lg-2" href="product.html">Sản phẩm</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link mx-lg-2" href="policy.html">Chính sách</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link mx-lg-2" href="contact.html">Liên hệ</a>
-                                  </li>
-                                <!-- <li class="nav-item dropdown">
-                                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                  </a>
-                                  <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                      <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                  </ul>
-                                </li> -->
-                              </ul>
-                            </div>
+                            <x-main-menu/>
                           </div>
                         </div>
                       </nav>
@@ -205,9 +175,9 @@
             </div>
         </section>
     </footer>
-    <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="assets/fontawesome/js/all.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/jquery/jquery-3.7.1.min.js') }}"></script>
 </body>
 </html>

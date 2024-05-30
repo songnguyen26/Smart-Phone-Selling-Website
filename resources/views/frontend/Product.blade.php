@@ -18,10 +18,10 @@
                   <h2 class="my-4 text-center">Tất cả sản phẩm</h2>
                   <div class="row p-5">
                       <div class="col-md-3 col-6 product-item pt-3">
-                        <a class="text-decoration-none" href="productDetail.html">
+                        <a class="text-decoration-none" href="{{ route('site.product.detail',['slug'=>'slug']) }}">
                             <div class="card h-100 rounded">
                               <div class="sale text-white">Giảm 20%</div>
-                              <img class="card-img-top"  src="assets/image/product3.png" alt="Product 3">
+                              <img class="card-img-top"  src="../../public/assets/image/product3.png" alt="Product 3">
                               <ul class="action">
                                 <li class="action-btn"><a class="text-dark" href=""><i class="fa-solid fa-eye"></i></a></li>
                                 <li  class="action-btn"><a class="text-dark" href=""><i class="fa-solid fa-heart"></i></a></li>
