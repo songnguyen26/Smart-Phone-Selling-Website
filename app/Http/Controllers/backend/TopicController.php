@@ -4,17 +4,17 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Brand;
-class BrandController extends Controller
+use App\Models\Topic;
+class TopicController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $list=Brand::where('status','!=','0')
+        $list=Topic::where('status','!=',0)
         ->get();
-        return view('backend.brand.index',compact('list'));
+        return view('backend.topic.index',compact('list'));
     }
 
     /**

@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     use HasFactory;
-    protected $table="nlsn_menu";
+    protected $table="menu";
 
 }

@@ -4,17 +4,19 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Brand;
-class BrandController extends Controller
+use App\Models\Post;
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $list=Brand::where('status','!=','0')
+        $list=Post::where('post.status','!=',0)
+        ->join('topic','post.topic_id','=','topic.id')
+        ->select('post.id as id','title','name','type','image')
         ->get();
-        return view('backend.brand.index',compact('list'));
+        return view('backend.post.index',compact('list'));
     }
 
     /**

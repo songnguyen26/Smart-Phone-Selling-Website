@@ -2,7 +2,7 @@
     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
       @foreach ($list as $item )
         <li class="nav-item">
-          <a class="nav-link mx-lg-2" href="about.html">{{ $item['name'] }}</a>
+          <a class="nav-link mx-lg-2" href="about.html">{{ $item->name }}</a>
         </li>
       @endforeach
       {{-- <li class="nav-item">

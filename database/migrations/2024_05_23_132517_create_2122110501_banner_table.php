@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('nlsn_banner', function (Blueprint $table) {
             $table->id();
             $table->string('name',1000);
+            $table->string('image',1000);
             $table->string('link',1000);
             $table->unsignedInteger('sort_order')->default(1);
             $table->string('position',50);
