@@ -9,5 +9,5 @@ class OrderDetail extends Model
 {
     use HasFactory;
     protected $table="orderdetail";
-
+    public $timestamps = false;
 }

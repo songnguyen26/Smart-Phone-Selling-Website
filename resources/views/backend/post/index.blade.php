@@ -21,10 +21,10 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-12 text-right">
-                    <a class="btn btn-sm btn-success" href="post_create.html">
+                    <a class="btn btn-sm btn-success" href="{{ route('admin.post.create') }}">
                         <i class="fas fa-plus"></i> Thêm
                     </a>
-                    <a class="btn btn-sm btn-danger" href="#">
+                    <a class="btn btn-sm btn-danger" href="{{ route('admin.post.trash') }}">
                         <i class="fas fa-trash"></i> Thùng rác
                     </a>
                 </div>
@@ -50,7 +50,7 @@
                                 <input type="checkbox" id="checkId" value="1" name="checkId[]">
                             </td>
                             <td class="text-center">
-                                <img src="{{ asset('assets/image/'.$item->image) }}" class="img-fluid" alt="{{ $item->image }}">
+                                <img src="{{ asset('assets/image/post/'.$item->image) }}" class="img-fluid" alt="{{ $item->image }}">
                             </td>
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->name }}</td>
@@ -59,9 +59,15 @@
                                 @php
                                     $args=['id'=>$item->id]
                                 @endphp
-                                <a href="{{ route('admin.post.status',$args) }}" class="btn btn-sm btn-success">
-                                    <i class="fas fa-toggle-on"></i>
-                                </a>
+                               @if ($item->status==1)
+                                    <a href="{{ route('admin.post.status',$args) }}" class="btn btn-sm btn-success">
+                                        <i class="fas fa-toggle-on"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('admin.post.status',$args) }}" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-toggle-on"></i>
+                                    </a>
+                                @endif
 
                                 <a href="{{ route('admin.post.show', $args) }}" class="btn btn-sm btn-info">
                                     <i class="far fa-eye"></i>

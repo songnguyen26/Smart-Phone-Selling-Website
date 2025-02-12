@@ -1,23 +1,24 @@
 @extends('layout.site');
+@section('title','Chi tiết sản phẩm')
 @section('maincontent')
 <div>
     <div class="container py-3">
         <div class="row">
          <div class="col-4 pt-3">
-           <img class="img-fluid" src="../../../public/assets/image/product1.webp" alt="">
+           <img class="img-fluid" src="{{ asset('assets/image/product/'.$productDetail->image) }}" alt="">
          </div>
          <div class="col-5 pt-3">
-           <div class="row"><h1>product3</h1></div>
-           <div class="row"><span> Mã: đang cập nhật</span></div>
-           <div class="row"><span>Thương hiệu: Apple | Tình trạng: Còn hàng</span> </div>
+           <div class="row"><h1>{{ $productDetail->name }}</h1></div>
+           <div class="row"><span> Mã: {{ $productDetail->id }}</span></div>
+           <div class="row"><span>Mô tả: {{ $productDetail->description }}</span> </div>
            <hr>
-           <div class="row" style="color: red; font-weight: bold; font-size: larger;"><span>2.590.000₫</span> </div>
+           <div class="row" style="color: red; font-weight: bold; font-size: larger;"><span>{{ number_format($productDetail->price-$productDetail->pricesale) }}</span> </div>
            <div class="row">
               <div class="input-group quantity mr-3" style="width: 150px;">
                <button id="minus"  onclick="handleMinus()" type="button" class="btn btn-danger" data-type="minus" >
                    <span class="fa fa-minus"></span>
                </button>
-               <input id="quantity" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="100">
+               <input id="qty" type="text" name="qty" class="form-control input-number" value="1" min="1" max="100">
                <button id="plus" onclick="handlePlus()"  type="button" class="btn btn-danger" data-type="plus" >
                    <span class="fa fa-plus"></span>
                </button>
@@ -28,7 +29,7 @@
                <button class="btn btn-danger " style="width: 300px; height: 65px;"><span class="fs-5 text fw-bold" >Mua ngay</span> <br> Giao tận nơi hoặc nhận tại cửa hàng</button>
              </div>
              <div class="col-3">
-               <button href="" class="btn btn-danger" style="width: 100px; height: 65px;" >
+               <button onclick="handleAddCart({{ $productDetail->id }})" class="btn btn-danger" style="width: 100px; height: 65px;" >
                  <i class="fa-solid fa-cart-plus"></i>
                  <br><span style="font-size: 12px;">Thêm vào giỏ</span>
                </button>
@@ -65,6 +66,33 @@
            </div>
          </div>
         </div>
+        <div class="row">
+          <h2 class="my-4 text-center">Sản phẩm liên quan</h2>
+            <div class="row p-5">
+              @foreach ($sameProduct as $product_item)
+                  <x-product-item :productitem="$product_item"/>
+              @endforeach
+            </div>
+        </div>
        </div>
 </div>
 @endsection
+@section('footer')
+     <script>
+        function handleAddCart(productid){
+          let qty = document.getElementById("qty").value;
+          $.ajax({
+            type: "GET",
+            data: {
+                productid: productid,
+                qty: qty
+            },
+            url:"{{ route('site.addcart') }}",
+            success: function(result,status,xhr){
+              console.log(result);
+              alert('Thêm vào giỏ hàng thành công');
+            }
+          });
+        }
+     </script>
+ @endsection

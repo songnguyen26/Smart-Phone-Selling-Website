@@ -1,9 +1,7 @@
 <div class="offcanvas-body">
     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-      @foreach ($list as $item )
-        <li class="nav-item">
-          <a class="nav-link mx-lg-2" href="about.html">{{ $item->name }}</a>
-        </li>
+      @foreach ($menuList as $menuitem )
+        <x-main-menu-item :menurow="$menuitem" />
       @endforeach
       {{-- <li class="nav-item">
         <a class="nav-link mx-lg-2 active" aria-current="page" href="{{ route('site.home') }}">Home</a>

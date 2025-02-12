@@ -21,7 +21,13 @@ class MainMenu extends Component
      */
     public function render(): View|Closure|string
     {
-        $list=Menu::get();
-        return view('components.main-menu',compact('list'));
+        $agrs_mainmenu=[
+            ['status','=',1],
+            ['position','=','mainmenu'],
+            ['parent_id','=',0]
+        ];
+        $menuList=Menu::where($agrs_mainmenu)
+        ->get();
+        return view('components.main-menu',compact('menuList'));
     }
 }

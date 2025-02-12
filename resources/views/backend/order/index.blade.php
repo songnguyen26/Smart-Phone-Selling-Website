@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title','Quản lý sản phẩm')
+@section('title','Quản lý đơn hàng')
 @section('maincontent')
 <section class="content-header">
     <div class="container-fluid">
@@ -35,6 +35,7 @@
                         <th>Họ tên</th>
                         <th>Điện thoại</th>
                         <th>Email</th>
+                        <th>Tình trạng</th>
                         <th>Ngày tạo</th>
                         <th class="text-center" style="width:200px;">Chức năng</th>
                         <th class="text-center" style="width:30px;">ID</th>
@@ -42,8 +43,6 @@
                 </thead>
                 <tbody>
                     @foreach ($list as $item)
-                        
-                    @endforeach
                     <tr>
                         <td class="text-center">
                             <input type="checkbox" id="checkId" value="1" name="checkId[]">
@@ -51,14 +50,26 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->phone }}</td>
                         <td>{{ $item->email }}</td>
+                        @if ($item->status==1)
+                            <td> Đã giao</td>
+                        @else
+                            <td> Chưa giao</td>
+                        @endif
+                        
                         <td>{{ $item->created_at }}</td>
                         <td class="text-center">
                             @php
                                 $args=['id'=>$item->id]
                             @endphp
-                            <a href="{{ route('admin.order.status',$args) }}" class="btn btn-sm btn-success">
-                                <i class="fas fa-toggle-on"></i>
-                            </a>
+                            @if ($item->status==1)
+                                <a href="{{ route('admin.order.status',$args) }}" class="btn btn-sm btn-success">
+                                    <i class="fas fa-toggle-on"></i>
+                                </a>
+                            @else
+                                <a href="{{ route('admin.order.status',$args) }}" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-toggle-on"></i>
+                                </a>
+                            @endif
 
                             <a href="{{ route('admin.order.show',$args) }}" class="btn btn-sm btn-info">
                                 <i class="far fa-eye"></i>
@@ -71,9 +82,11 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            1
+                            {{ $item->id }}
                         </td>
                     </tr>
+                    @endforeach
+                   
                 </tbody>
             </table>
         </div>

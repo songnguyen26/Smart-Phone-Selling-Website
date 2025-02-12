@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -29,7 +30,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('website.logout') }}">
           <i class="fas fa-power-off"></i> Thoát
         </a>
       </li>
@@ -46,7 +47,7 @@
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">NguyenLucSongNguyen</a>
+          <a href="{{ route('admin.dashboard') }}" class="d-block">NguyenLucSongNguyen</a>
         </div>
       </div>
       <nav class="mt-2">
@@ -61,19 +62,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="index.html" class="nav-link">
+                <a href="{{ route('admin.product.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tất cả sản phẩm</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index2.html" class="nav-link">
+                <a href="{{ route('admin.category.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh mục</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index3.html" class="nav-link">
+                <a href="{{ route('admin.brand.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thương hiệu</p>
                 </a>
@@ -90,13 +91,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../layout/top-nav.html" class="nav-link">
+                <a href="{{ route('admin.post.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tất cả bài viết</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{ route('admin.topic.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Chủ đề</p>
                 </a>
@@ -104,13 +105,13 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.order.index') }}" class="nav-link">
               <i class="fas fa-shopping-bag"></i>
-              <p>Giỏ hàng</p>
+              <p>Đơn hàng</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.contact.index') }}" class="nav-link">
               <i class="fas fa-id-card"></i>
               <p>Liên hệ</p>
             </a>
@@ -125,13 +126,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../forms/general.html" class="nav-link">
+                <a href="{{ route('admin.menu.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Menu</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../forms/advanced.html" class="nav-link">
+                <a href="{{ route('admin.banner.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Banner</p>
                 </a>
@@ -148,13 +149,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../tables/simple.html" class="nav-link">
+                <a href="{{ route('admin.user.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tất cả thành viên</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tables/data.html" class="nav-link">
+                <a href="{{ route('admin.user.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm thành viên</p>
                 </a>

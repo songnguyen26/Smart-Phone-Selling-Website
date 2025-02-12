@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title','Quản lý sản phẩm')
+@section('title','Quản lý thành viên')
 @section('maincontent')
 <section class="content-header">
     <div class="container-fluid">
@@ -21,10 +21,10 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-12 text-right">
-                    <a class="btn btn-sm btn-success" href="user_create.html">
+                    <a class="btn btn-sm btn-success" href="{{ route('admin.user.create') }}">
                         <i class="fas fa-plus"></i> Thêm
                     </a>
-                    <a class="btn btn-sm btn-danger" href="#">
+                    <a class="btn btn-sm btn-danger" href="{{ route('admin.user.trash') }}">
                         <i class="fas fa-trash"></i> Thùng rác
                     </a>
                 </div>
@@ -62,9 +62,15 @@
                             @php
                                 $args=['id'=>$item->id]
                             @endphp
-                            <a href="{{ route('admin.user.status',$args) }}" class="btn btn-sm btn-success">
-                                <i class="fas fa-toggle-on"></i>
-                            </a>
+                            @if ($item->status==1)
+                                <a href="{{ route('admin.user.status',$args) }}" class="btn btn-sm btn-success">
+                                    <i class="fas fa-toggle-on"></i>
+                                </a>
+                            @else
+                                <a href="{{ route('admin.user.status',$args) }}" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-toggle-on"></i>
+                                </a>
+                            @endif
 
                             <a href="{{ route('admin.user.show',$args) }}" class="btn btn-sm btn-info">
                                 <i class="far fa-eye"></i>

@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title','Quản lý sản phẩm')
+@section('title','Quản lý menu')
 @section('maincontent')
 <section class="content-header">
     <div class="container-fluid">
@@ -21,7 +21,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-12 text-right">
-                    <a class="btn btn-sm btn-danger" href="menu_trash.html">
+                    <a class="btn btn-sm btn-danger" href="{{ route('admin.menu.trash') }}">
                         <i class="fas fa-trash"></i> Thùng rác
                     </a>
                 </div>
@@ -30,13 +30,14 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    <form action="#" method="post">
+                    <form action="{{ route('admin.menu.store') }}" method="post">
+                        @csrf
                         <div class="accordion" id="accordionExample">
                             <div class="card p-3">
-                                <label for="postion">Vị trí</label>
-                                <select name="postion" id="postion" class="form-control">
-                                    <option value="2">Chưa xuất bản</option>
-                                    <option value="1">Xuất bản</option>
+                                <label for="position">Vị trí</label>
+                                <select name="position" id="position" class="form-control">
+                                    <option value="mainmenu">Main Menu</option>
+                                    <option value="footermenu">Footer</option>
                                 </select>
                             </div>
 
@@ -51,14 +52,17 @@
                                 <div id="collapseCategory" class="collapse"
                                     aria-labelledby="headingCategory" data-parent="#accordionExample">
                                     <div class="card-body">
+                                        @foreach ($categoryList as $category)
                                         <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="categoryId">
-                                            <label class="form-check-label" for="categoryId">
-                                              Default checkbox
+                                            <input class="form-check-input" type="checkbox" name="categoryid[]" value="{{ $category->id }}" id="category{{ $category->id }}">
+                                            <label class="form-check-label" for="category{{ $category->id }}">
+                                              {{ $category->name }}
                                             </label>
                                         </div>
+                                        @endforeach
+                                        
                                         <div class="mb-3">
-                                            <button type="submit" name="createCategory" class="btn btn-success">Thêm menu</button>
+                                            <input type="submit" name="createCategory" class="btn btn-success" value="Thêm menu">
                                         </div>
                                     </div>
                                 </div>
@@ -75,14 +79,17 @@
                                 <div id="collapseBrand" class="collapse"
                                     aria-labelledby="headingBrand" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="brandId">
-                                            <label class="form-check-label" for="brandId">
-                                              Default checkbox
-                                            </label>
-                                        </div>
+                                        @foreach ($brandList as $item)
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" name="brandid[]" type="checkbox" value="{{ $item->id }}" id="brand{{ $item->id }}">
+                                                    <label class="form-check-label" for="brand{{ $item->id }}">
+                                                    {{ $item->name }}
+                                                    </label>
+                                                </div>
+                                        @endforeach
+                                        
                                         <div class="mb-3">
-                                            <button type="submit" name="createBrand" class="btn btn-success">Thêm menu</button>
+                                            <input type="submit" name="createBrand" class="btn btn-success" value="Thêm menu">
                                         </div>
                                     </div>
                                 </div>
@@ -99,14 +106,17 @@
                                 <div id="collapseTopic" class="collapse"
                                     aria-labelledby="headingTopic" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="topicId">
-                                            <label class="form-check-label" for="topicId">
-                                              Default checkbox
-                                            </label>
-                                        </div>
+                                        @foreach ($topicList as $item)
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" name="topicid[]" type="checkbox" value="{{ $item->id }}" id="topicId">
+                                                <label class="form-check-label" for="topicId">
+                                                    {{ $item->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                        
                                         <div class="mb-3">
-                                            <button type="submit" name="createTopic" class="btn btn-success">Thêm menu</button>
+                                            <input type="submit" name="createTopic" class="btn btn-success" value="Thêm menu">
                                         </div>
                                     </div>
                                 </div>
@@ -123,14 +133,17 @@
                                 <div id="collapsePage" class="collapse"
                                     aria-labelledby="headingPage" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" value="" id="pageId">
-                                            <label class="form-check-label" for="pageId">
-                                              Default checkbox
-                                            </label>
-                                        </div>
+                                        @foreach ($pageList as $item)
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" name="pageid[]" type="checkbox" value="{{ $item->id }}" id="page{{ $item->id }}">
+                                                <label class="form-check-label" for="page{{ $item->id }}">
+                                                    {{ $item->title }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                        
                                         <div class="mb-3">
-                                            <button type="submit" name="createPage" class="btn btn-success">Thêm menu</button>
+                                            <input type="submit" name="createPage" class="btn btn-success" value="Thêm menu">
                                         </div>
                                     </div>
                                 </div>
@@ -156,12 +169,19 @@
                                             <input type="text" value="" name="link" id="link" class="form-control">
                                         </div>
                                         <div class="mb-3">
-                                            <button type="submit" name="createCustom" class="btn btn-success">Thêm menu</button>
+                                            <input type="submit" name="createCustom" class="btn btn-success" value="Thêm menu">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- end card -->
+                            <div class="card p-3">
+                                <label for="parent_id">Danh mục cha</label>
+                                <select name="parent_id" id="parent_id" class="form-control">
+                                    <option value="0">None</option>
+                                    {!! $htmlParent_id !!}
+                                </select>
+                            </div>
                             <div class="card p-3">
                                 <label for="status">Trạng thái</label>
                                 <select name="status" id="status" class="form-control">
@@ -198,9 +218,15 @@
                                     @php
                                         $args=['id'=>$item->id]
                                     @endphp
-                                    <a href="{{ route('admin.menu.status',$args) }}" class="btn btn-sm btn-success">
-                                        <i class="fas fa-toggle-on"></i>
-                                    </a>
+                                    @if ($item->status==1)
+                                        <a href="{{ route('admin.menu.status',$args) }}" class="btn btn-sm btn-success">
+                                            <i class="fas fa-toggle-on"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('admin.menu.status',$args) }}" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-toggle-on"></i>
+                                        </a>
+                                    @endif
 
                                     <a href="{{ route('admin.menu.show',$args) }}" class="btn btn-sm btn-info">
                                         <i class="far fa-eye"></i>

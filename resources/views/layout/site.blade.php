@@ -20,10 +20,13 @@
                         <img class="img-fluid" src="{{ asset('assets/image/logo.webp') }}" alt="">
                     </div>
                     <div class="col-lg-4 d-lg-block d-none">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
-                          </div>
+                        <form action="{{ route('site.product.search') }}">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input name="search" type="text" class="form-control" placeholder="Tìm kiếm sản phẩm" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <button type="submit" class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
+                              </div>
+                        </form>
                     </div>
                     <div class="col-lg-6 d-lg-block ">
                         <div class="row">
@@ -40,15 +43,43 @@
                                 </div>
                                </a>
                             </div>
+                            @if (Auth::check())
+                                @php
+                                    $user=Auth::user()
+                                @endphp
+                                <div class="col">
+                                    <a href="" class="text-decoration-none">
+                                     <div class="row">
+                                         <div class="col-3">
+                                         </div>
+                                         <div class="col-lg-9 d-lg-block d-none " style="color: #ffffff;" >
+                                             <a href="{{ route('website.logout') }}" class="text-decoration-none text-light">Đăng xuất</a>
+                                         </div>
+                                     </div>
+                                    </a>
+                                 </div>
+                                <div class="col">
+                                    <a href="" class="text-decoration-none">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <i class="fa-solid fa-user fa-lg" style="color: #ffffff;"></i>
+                                            </div>
+                                            <div class="col-lg-9 d-lg-block d-none " style="color: #ffffff;" >
+                                                <div class="row" style=" font-size: x-small;">{{ $user->name }} </div>
+
+                                            </div>
+                                        </div>
+                                       </a> 
+                                </div>
+                            @else
                             <div class="col">
                                 <a href="" class="text-decoration-none">
                                  <div class="row">
                                      <div class="col-3">
-                                         <i class="fa-solid fa-phone-volume fa-lg" style="color: #ffffff;"></i>
+                                         
                                      </div>
                                      <div class="col-lg-9 d-lg-block d-none " style="color: #ffffff;" >
-                                         <div class="row" style=" font-size: x-small;">Gọi mua hàng</div>
-                                         <div class="row" style=" font-size: small;">1900 6750</div>
+                                        <a href="{{ route('website.getLogin') }}" class="text-decoration-none text-light">Đăng nhập</a>
                                      </div>
                                  </div>
                                 </a>
@@ -60,21 +91,29 @@
                                             <i class="fa-solid fa-user fa-lg" style="color: #ffffff;"></i>
                                         </div>
                                         <div class="col-lg-9 d-lg-block d-none " style="color: #ffffff;" >
-                                            <div class="row" style=" font-size: x-small;">Thông tin </div>
-                                            <div class="row" style=" font-size: small;">tài khoản</div>
+                                            <div class="row" style=" font-size: x-small;">Guest </div>
                                         </div>
                                     </div>
                                    </a> 
                             </div>
+                            @endif
                             <div class="col">
                               
-                                <a href="" class="text-decoration-none">
+                                <a href="{{ route('site.cart') }}" class="text-decoration-none">
                                     <div class="row">
                                         <div class="col-3">
-                                            <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
+                                            <i class="fa-solid fa-cart-shopping" style="color: #ffffff;">
+                                            </i>
                                         </div>
                                         <div class="col-lg-9 d-lg-block d-none " style="color: #ffffff;" >
-                                            <div class="row" >Giỏ hàng </div>
+                                            @php
+                                                $count=count(session('cart',[]))
+                                            @endphp
+                                            <div class="row" >
+                                                <div class="col">
+                                                    Giỏ hàng(<span id="showqty">{{ $count }}</span>)
+                                                </div>
+                                             </div>
                                            
                                         </div>
                                     </div>
@@ -83,10 +122,13 @@
                         </div>
                     </div>
                     <div class="d-lg-none col-12 pt-3">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
-                          </div>
+                        <form action="{{ route('site.product.search') }}">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input name="search" type="text" class="form-control" placeholder="Tìm kiếm sản phẩm" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <button type="submit" class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                        </form>
                     </div>
                     
                 </div>
@@ -130,44 +172,32 @@
                     <div class="col-md">
                         <ul class="list-menu">
                             <li class="list-menu-item" style="font-size: larger; font-weight: 500;">Chính sách</li>
-                            <li class="list-menu-item"><a  href="">Chính sách mua hàng</a></li>
-                            <li class="list-menu-item"><a href="">Chính sách đổi trả</a></li>
-                            <li class="list-menu-item"><a href="">Chính sách vận chuyển</a></li>
-                            <li class="list-menu-item"><a href="">Chính sách bảo mật</a></li>
-                            <li class="list-menu-item"><a href="">Cam kết cửa hàng</a></li>
+                            <x-footer-menu/>
                           </ul>
                     </div>
                     <div class="col-md">
-                        <ul class="list-menu">
-                            <li class="list-menu-item" style="font-size: larger; font-weight: 500;">Hướng dẫn</li>
-                            <li class="list-menu-item"><a  href="">Hướng dẫn mua hàng</a></li>
-                            <li class="list-menu-item"><a href="">Hướng dẫn đổi trả</a></li>
-                            <li class="list-menu-item"><a href="">Hướng dẫn chuyển khoản</a></li>
-                            <li class="list-menu-item"><a href="">Hướng dẫn trả góp</a></li>
-                            <li class="list-menu-item"><a href="">Hướng dẫn hoàn hàng</a></li>
-                          </ul>
-                    </div>
+                  
                     <div class="col-md">
                         <ul class="list-menu">
                             <li class="list-menu-item" style="font-size: larger; font-weight: 500;">Kết nối với chúng tôi</li>
                             <li class="list-menu-item"><a  href="">
-                                <img src="assets/image/facebook_2.svg" alt="">
-                                <img src="assets/image/instagram_1.svg" alt="">
-                                <img src="assets/image/shopee.svg" alt="">
-                                <img src="assets/image/lazada.svg" alt="">
-                                <img src="assets/image/tiktok.svg" alt="">
+                                <img src="{{ asset('assets/image/facebook_2.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/instagram_1.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/shopee.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/lazada.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/tiktok.svg') }}" alt="">
                             </a></li>
                           </ul>
                           <ul class="list-menu">
                             <li class="list-menu-item" style="font-size: larger; font-weight: 500;">Hỗ trợ thanh toán</li>
                             <li class="list-menu-item"><a  href="">
-                                <img src="assets/image/payment_1.svg" alt="">
-                                <img src="assets/image/payment_2.svg" alt="">
-                                <img src="assets/image/payment_3.svg" alt="">
-                                <img src="assets/image/payment_4.svg" alt="">
-                                <img src="assets/image/payment_5.svg" alt="">
-                                <img src="assets/image/payment_6.svg" alt="">
-                                <img src="assets/image/payment_7.svg" alt="">
+                                <img src="{{ asset('assets/image/payment_1.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/payment_2.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/payment_3.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/payment_4.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/payment_5.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/payment_6.svg') }}" alt="">
+                                <img src="{{ asset('assets/image/payment_7.svg') }}" alt="">
                             </a></li>
                           </ul>
                     </div>
@@ -175,6 +205,7 @@
             </div>
         </section>
     </footer>
+    @yield('footer')
     <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>

@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name',1000);
             $table->string('slug',1000);
-            $table->string('image',1000)->nullale();
+            $table->string('image',1000)->nullable();
             $table->unsignedInteger('sort_order')->default(0);
             $table->string('description',255)->nullable();
             $table->unsignedInteger('created_by');
-            $table->unsignedInteger('updated_by')->nullale();
+            $table->unsignedInteger('updated_by')->nullable();
             $table->unsignedTinyInteger('status')->default(2);
             $table->timestamps();
         });

@@ -11,16 +11,17 @@ class ProductItem extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $product_row=null;
+    public function __construct($productitem)
     {
-        //
+        $this->product_row=$productitem;
     }
 
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
-    {
-        return view('components.product-item');
+    {   $product=$this->product_row;
+        return view('components.product-item',compact('product'));
     }
 }

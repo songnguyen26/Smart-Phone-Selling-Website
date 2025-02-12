@@ -1,11 +1,7 @@
-const listImage=document.querySelector(`.list-image`)
-const imgs=document.getElementsByTagName('img')
-setInterval(() => {
-    
-}, 4000);
+
 
 const handleMinus= ()=>{
-    const minus=document.getElementById("quantity")
+    const minus=document.getElementById("qty")
     if(parseInt(minus.value)==1){
         minus.value=1
     }
@@ -15,7 +11,7 @@ const handleMinus= ()=>{
     }
 }
 const handlePlus=()=>{
-    const minus=document.getElementById("quantity")
+    const minus=document.getElementById("qty")
     if(minus.value==10){
         minus.value=10
     }

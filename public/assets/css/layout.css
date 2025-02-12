@@ -152,3 +152,99 @@
     border: 1px solid #fff;
     color: #fff;
 }
+.navbar {
+      
+    padding: 1rem;
+  }
+  .nav-item {
+    list-style: none;
+    position: relative;
+  }
+  .nav-link {
+    text-decoration: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    display: block;
+  }
+  .nav-link:hover {
+    color: #000;
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    min-width: 200px;
+    z-index: 1000;
+  }
+  .dropdown-menu .dropdown-item {
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+  }
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #e9ecef;
+  }
+  .dropdown-menu .dropdown-submenu {
+    position: relative;
+  }
+  .dropdown-menu .dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    z-index: 2000;
+  }
+  .nav-item:hover > .dropdown-menu {
+    display: block;
+  }
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+
+  
+  .mydict div {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    justify-content: center;
+  }
+  
+  .mydict input[type="radio"] {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  
+  .mydict input[type="radio"]:checked + span {
+    box-shadow: 0 0 0 0.0625em #0043ed;
+    background-color: #dee7ff;
+    z-index: 1;
+    color: #0043ed;
+  }
+  
+  label span {
+    display: block;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 0.375em .75em;
+    position: relative;
+    margin-left: .0625em;
+    box-shadow: 0 0 0 0.0625em #b5bfd9;
+    letter-spacing: .05em;
+    color: #3e4963;
+    text-align: center;
+    transition: background-color .5s ease;
+  }
+  
+  label:first-child span {
+    border-radius: .375em 0 0 .375em;
+  }
+  
+  label:last-child span {
+    border-radius: 0 .375em .375em 0;
+  }
+  

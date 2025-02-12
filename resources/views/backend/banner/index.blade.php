@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title','Quản lý sản phẩm')
+@section('title','Quản lý banner')
 @section('maincontent')
 <section class="content-header">
     <div class="container-fluid">
@@ -21,7 +21,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-12 text-right">
-                    <a class="btn btn-sm btn-danger" href="category_trash.html">
+                    <a class="btn btn-sm btn-danger" href="{{ route('admin.banner.trash') }}">
                         <i class="fas fa-trash"></i> Thùng rác
                     </a>
                 </div>
@@ -30,29 +30,40 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    <form action="#" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.banner.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="name">Tên banner</label>
-                            <input type="text" value="" name="name" id="name" class="form-control">
+                            <input type="text" value="{{ old('name') }}" name="name" id="name" class="form-control">
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="link">Liên kết</label>
-                            <input type="text" value="" name="link" id="link" class="form-control">
+                            <input type="text" value="{{ old('link') }}" name="link" id="link" class="form-control">
+                             @error('link')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="description">Mô tả</label>
-                            <textarea name="description" id="description" class="form-control"></textarea>
+                            <textarea name="description" id="description" class="form-control">{{ old('description') }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="postion">Vị trí</label>
                             <select name="postion" id="postion" class="form-control">
                                 <option value="0">None</option>
+                                <option value="slider">Slider</option>
 
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="image">Hình</label>
                             <input type="file" name="image" id="image" class="form-control">
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="status">Trạng thái</label>
@@ -87,7 +98,7 @@
                                     <input type="checkbox" id="checkId" value="1" name="checkId[]">
                                 </td>
                                 <td class="text-center">
-                                    <img src="{{ asset('assets/image/'.$item->image) }}" class="img-fluid" alt="{{ $item->image }}">
+                                    <img src="{{ asset('assets/image/banner/'.$item->image) }}" class="img-fluid" alt="{{ $item->image }}">
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->link }}</td>
@@ -96,9 +107,15 @@
                                     @php
                                         $args=['id'=>$item->id]
                                     @endphp
-                                    <a href="{{ route('admin.banner.status',$args) }}" class="btn btn-sm btn-success">
-                                        <i class="fas fa-toggle-on"></i>
-                                    </a>
+                                    @if ($item->status==1)
+                                        <a href="{{ route('admin.banner.status',$args) }}" class="btn btn-sm btn-success">
+                                            <i class="fas fa-toggle-on"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('admin.banner.status',$args) }}" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-toggle-on"></i>
+                                        </a>
+                                    @endif
 
                                     <a href="{{ route('admin.banner.show',$args) }}" class="btn btn-sm btn-info">
                                         <i class="far fa-eye"></i>

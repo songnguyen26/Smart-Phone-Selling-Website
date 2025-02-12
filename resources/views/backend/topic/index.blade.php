@@ -21,7 +21,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-12 text-right">
-                    <a class="btn btn-sm btn-danger" href="topic_trash.html">
+                    <a class="btn btn-sm btn-danger" href="{{ route('admin.topic.trash') }}">
                         <i class="fas fa-trash"></i> Thùng rác
                     </a>
                 </div>
@@ -30,10 +30,15 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    <form action="#" method="post">
+                    <form action="{{ route('admin.topic.store') }}" method="post">
+                        @csrf
                         <div class="mb-3">
                             <label for="name">Tên chủ đề</label>
                             <input type="text" value="" name="name" id="name" class="form-control">
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                                
+                            @enderror
 
                         </div>
                         <div class="mb-3">
@@ -44,7 +49,7 @@
                             <label for="sort_order">Sắp xếp</label>
                             <select name="sort_order" id="sort_order" class="form-control">
                                 <option value="0">None</option>
-
+                                {!! $htmlSortOrder !!}
                             </select>
                         </div>
                         <div class="mb-3">
@@ -84,9 +89,15 @@
                                         @php
                                             $args=['id'=>$item->id]
                                         @endphp
-                                        <a href="{{ route('admin.topic.status',$args) }}" class="btn btn-sm btn-success">
-                                            <i class="fas fa-toggle-on"></i>
-                                        </a>
+                                       @if ($item->status==1)
+                                            <a href="{{ route('admin.topic.status',$args) }}" class="btn btn-sm btn-success">
+                                                <i class="fas fa-toggle-on"></i>
+                                            </a>
+                                        @else
+                                            <a href="{{ route('admin.topic.status',$args) }}" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-toggle-on"></i>
+                                            </a>
+                                        @endif
     
                                         <a href="{{ route('admin.topic.show',$args) }}" class="btn btn-sm btn-info">
                                             <i class="far fa-eye"></i>
